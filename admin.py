@@ -1,91 +1,88 @@
 from django.contrib import admin
 from mesa.models import *
 
-class ReporteSoliUsua(models.Model):
-
-
-    cod_report_usua = ("codigo_reporte",)
-    descripcion = ("descripcion_problema")
-    prioridad = ("prioridad")
+class ReporteSoliUsua1(admin.ModelAdmin):
+    list_display= ("descripcion",)
+    search_fields = ("cod_report_usua",)
+    lister_filter = ("prioridad",)
     
-admin.site.register(ReporteSoliUsua)
+admin.site.register(ReporteSoliUsua,ReporteSoliUsua1)
 
-class CalidadAtencion(models.Model):
-    cod_atencion = ("cod_atencion",)
-    calificacion = ("calificacion",)
+class CalidadAtencion1(admin.ModelAdmin):
+    list_display= ("calificacion",)
+    search_fields = ("cod_atencion",)
+
+admin.site.register(CalidadAtencion,CalidadAtencion1)
+
+class Dependencias1(admin.ModelAdmin):
+    list_display= ("cod_dependencia",)
+    search_fields = ("nombre_dependencia",)
+
+admin.site.register(Dependencias,Dependencias1)
+
+class Usuarios1(admin.ModelAdmin):
+    list_display= ("cod_usuario",)
+    search_fields = ("cod_dependencia",)
+    lister_filter = ("cod_atencion",)
+    list_display= ("nombre_usuario,apellido",)
+    search_fields = ("direccio",)
+    lister_filter = ("telefono",)
+    list_display= ("apellido",)
+
+admin.site.register(Usuarios,Usuarios1)
     
-admin.site.register(CalidadAtencion)
+class ReportSolucProb1(admin.ModelAdmin):
+    list_display= ("cod_report_soluc_prob",)
+    search_fields = ("solucion",)
 
-class Dependencias(models.Model):
-    cod_dependencia = ("dependencia",)
-    nombre_dependencia = ("nomdependencia",)
+admin.site.register(ReportSolucProb,ReportSolucProb1)
 
-admin.site.register(Dependencias)
+class Tecnico1(admin.ModelAdmin):
+    list_display= ("cod_tecnico",)
+    search_fields = ("nombre_tecnico",)
+    lister_filter = ("apellido_tecnico",)
 
-class Usuarios(models.Model):
-    cod_usuario = ("usuario",)
-    cod_dependencia = ("dependencia",)
-    cod_atencion = ("atencion",)
-    nombre_usuario = ("nombusuario",)
-    direccio = ("direccion",)
-    telefono = ("telefono",)
-    apellido = ("apellido",)
-
-admin.site.register(Usuarios)
-    
-class ReportSolucProb(models.Model):
-    cod_report_soluc_prob = ("codtecnico",)
-    solucion = ("detsolucion",)
-
-admin.site.register(ReportSolucProb)
-
-class Tecnico(models.Model):
-    cod_tecnico = ("codtecnico",)
-    nombre_tecnico = ("nombtecnico",)
-    apellido_tecnico = ("apelltecnico",)
-
-admin.site.register(Tecnico)
+admin.site.register(Tecnico,Tecnico1)
     
 
 
-class Caso(models.Model):
-    cod_caso = ("codcaso",)
-    cod_report_usua = ("codrepousuario",)
-    cod_usuario = ("codusuario",)
+class Caso1(admin.ModelAdmin):
+    list_display= ("cod_caso",)
+    search_fields = ("cod_report_usua",)
+    lister_filter = ("cod_usuario",)
 
-admin.site.register(Caso)
+admin.site.register(Caso,Caso1)
     
 
+class CierreCaso1(admin.ModelAdmin):
+    list_display= ("cod_cierre_caso",)
+    search_fields = ("soluccion",)
 
-class CierreCaso(models.Model):
-    cod_cierre_caso = ("codcierre",)
-    soluccion = ("solucion",)
-
-admin.site.register(CierreCaso)
+admin.site.register(CierreCaso,CierreCaso1)
     
 
-class Conclucion(models.Model):
-    cod_conclucion = ("codconclusion",)
-    cod_cierre_caso = ("codcierre",)
-    cod_usuario = ("codusuario",)
+class Conclucion1(admin.ModelAdmin):
+    list_display= ("cod_conclucion",)
+    search_fields = ("cod_cierre_caso",)
+    lister_filter = ("cod_usuario",)
 
-admin.site.register(Conclucion)
+admin.site.register(Conclucion,Conclucion1)
     
 
-class Revision(models.Model):
-    cod_revision = ("codrevision",)
-    cod_tecnico = ("codtecnico",)
-    cod_report_usua = ("codreport",)
+class Revision1(admin.ModelAdmin):
+    list_display= ("cod_revision",)
+    search_fields = ("cod_tecnico",)
+    lister_filter = ("cod_report_usua",)
 
-admin.site.register(Revision)
+admin.site.register(Revision,Revision1)
     
 
-class Solucionar(models.Model):
-    cod_solucionar = ("codsolucion",)
-    cod_report_soluc_prob = ("codreportsol",)
-    cod_tecnico = ("codtecnico",)
+class Solucionar1(admin.ModelAdmin):
+    list_display= ("cod_solucionar",)
+    search_fields = ("cod_report_soluc_prob",)
+    lister_filter = ("cod_tecnico",)
 
-admin.site.register(Solucionar)
+admin.site.register(Solucionar,Solucionar1)
    
 
 
